@@ -33,7 +33,7 @@ var w = 960,
     r = 80,
     x = Math.sin(2 * Math.PI / 3),
     y = Math.cos(2 * Math.PI / 3),
-    speed = 1,
+    speed = 2,
     start = Date.now();
 
 var svg = d3.select("body").append("svg:svg")
@@ -85,7 +85,7 @@ function gear(d) {
       da = Math.PI / n,
       a0 = -Math.PI / 2 + (d.ring ? Math.PI / n : 0),
       i = -1,
-      path = ["M0,", -r0];
+      path = ["M", r0 * Math.cos(a0), ",", r0 * Math.sin(a0)];
   while (++i < n) path.push(
       "A", r0, ",", r0, " 0 0,1 ", r0 * Math.cos(a0 += da), ",", r0 * Math.sin(a0),
       "L", r2 * Math.cos(a0), ",", r2 * Math.sin(a0),
