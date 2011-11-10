@@ -100,7 +100,7 @@ function gear(d) {
 d3.timer(function() {
   var angle = (Date.now() - start) * speed;
   svg.selectAll("path").attr("transform", function(d) { return "rotate(" + angle / d.radius + ")"; });
-  svg.attr("transform", "rotate(" + -angle / r / 5 + ")");
+  svg.attr("transform", "rotate(" + angle / r / 5 + ")");
 });
 
     </script>
