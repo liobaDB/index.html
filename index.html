@@ -44,7 +44,7 @@ var svg = d3.select("body").append("svg:svg")
 
 svg.append("svg:g")
     .attr("class", "ring")
-    .data(ring = [{angle: 2.25, teeth: 80, radius: -r * 5, ring: true}])
+    .data([ring = {angle: 2.25, teeth: 80, radius: -r * 5, ring: true}])
   .append("svg:path")
     .attr("d", gear);
 
