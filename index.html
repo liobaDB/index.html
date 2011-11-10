@@ -4,6 +4,18 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <style type="text/css">
 
+body {
+  font: 300 13px "Helvetica Neue", Helvetica;
+}
+
+form {
+  padding: 1em;
+}
+
+form, svg {
+  position: absolute;
+}
+
 path {
   fill-rule: evenodd;
   stroke: #333;
@@ -25,6 +37,15 @@ path {
     </style>
   </head>
   <body>
+    <form>
+      Frame of Reference:<br>
+      <input type="radio" name="reference" id="ref-ring" checked>
+      <label for="ref-ring">Annulus</label><br>
+      <input type="radio" name="reference" id="ref-planet">
+      <label for="ref-planet">Planets</label><br>
+      <input type="radio" name="reference" id="ref-sun">
+      <label for="ref-sun">Sun</label>
+    </form>
     <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.5.0"></script>
     <script type="text/javascript">
 
@@ -33,10 +54,10 @@ var w = 960,
     r = 80,
     x = Math.sin(2 * Math.PI / 3),
     y = Math.cos(2 * Math.PI / 3),
-    speed = 2,
+    speed = 4,
     start = Date.now();
 
-var svg = d3.select("body").append("svg:svg")
+var svg = d3.select("body").insert("svg:svg", "form")
     .attr("width", w)
     .attr("height", h)
   .append("svg:g")
@@ -77,6 +98,13 @@ svg.append("svg:g")
   .append("svg:path")
     .attr("d", gear);
 
+d3.selectAll("input[name=reference]")
+    .data([r * 5, Infinity, -r])
+    .on("change", function(d) { svg.data([{radius: d}]); });
+
+d3.selectAll("input[name=speed]")
+    .on("change", function() { speed = +this.value; });
+
 function gear(d) {
   var n = d.teeth,
       r2 = Math.abs(d.radius),
@@ -102,7 +130,7 @@ d3.timer(function() {
   var angle = (Date.now() - start) * speed,
       transform = function(d) { return "rotate(" + angle / d.radius + ")"; };
   svg.selectAll("path").attr("transform", transform);
-  svg.attr("transform", transform); // fixed ring
+  svg.attr("transform", transform); // frame of reference
 });
 
     </script>
