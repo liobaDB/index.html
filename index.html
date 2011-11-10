@@ -39,9 +39,9 @@ path {
   <body>
     <form>
       Frame of Reference:<br>
-      <input type="radio" name="reference" id="ref-ring" checked>
+      <input type="radio" name="reference" id="ref-ring">
       <label for="ref-ring">Annulus</label><br>
-      <input type="radio" name="reference" id="ref-planet">
+      <input type="radio" name="reference" id="ref-planet" checked>
       <label for="ref-planet">Planets</label><br>
       <input type="radio" name="reference" id="ref-sun">
       <label for="ref-sun">Sun</label>
@@ -63,7 +63,7 @@ var svg = d3.select("body").insert("svg:svg", "form")
   .append("svg:g")
     .attr("transform", "translate(" + w / 2 + "," + h / 2 + ")scale(.55)")
   .append("svg:g")
-    .data([{radius: r * 5}]);
+    .data([{radius: Infinity}]);
 
 svg.append("svg:g")
     .attr("class", "ring")
