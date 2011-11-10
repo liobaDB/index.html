@@ -41,7 +41,8 @@ var svg = d3.select("body").append("svg:svg")
     .attr("height", h)
   .append("svg:g")
     .attr("transform", "translate(" + w / 2 + "," + h / 2 + ")scale(.55)")
-  .append("svg:g");
+  .append("svg:g")
+    .data([{radius: r * 5}]);
 
 svg.append("svg:g")
     .attr("class", "ring")
@@ -98,9 +99,10 @@ function gear(d) {
 }
 
 d3.timer(function() {
-  var angle = (Date.now() - start) * speed;
-  svg.selectAll("path").attr("transform", function(d) { return "rotate(" + angle / d.radius + ")"; });
-  svg.attr("transform", "rotate(" + angle / r / 5 + ")");
+  var angle = (Date.now() - start) * speed,
+      transform = function(d) { return "rotate(" + angle / d.radius + ")"; };
+  svg.selectAll("path").attr("transform", transform);
+  svg.attr("transform", transform); // fixed ring
 });
 
     </script>
