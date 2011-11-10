@@ -62,14 +62,14 @@ svg.append("svg:g")
 
 svg.append("svg:g")
     .attr("class", "planet")
-    .attr("transform", "translate(" + -r * 3 * x + "," + r * 3 * y + ")")
+    .attr("transform", "translate(" + -r * 3 * x + "," + -r * 3 * y + ")")
     .data([{angle: 0, teeth: 32, radius: -r * 2}])
   .append("svg:path")
     .attr("d", gear);
 
 svg.append("svg:g")
     .attr("class", "planet")
-    .attr("transform", "translate(" + r * 3 * x + "," + r * 3 * y + ")")
+    .attr("transform", "translate(" + r * 3 * x + "," + -r * 3 * y + ")")
     .data([{angle: 0, teeth: 32, radius: -r * 2}])
   .append("svg:path")
     .attr("d", gear);
